@@ -25,9 +25,13 @@
         </div>
         <div>
             <label>Catégorie</label>
+            
             <select name="selCategories">
-
+                @for(c of categories; track $index){
+                    <option name="c" [value]="c">{{c}}</option>
+                }
             </select>
+        
         </div>
         <div>
             <label>

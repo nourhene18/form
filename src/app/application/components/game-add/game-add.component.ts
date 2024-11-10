@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Category } from '../../model/category';
 
 
 @Component({
@@ -9,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './game-add.component.css'
 })
 export class GameAddComponent  {
-
+  categories = Object.values(Category);
 }
