@@ -11,6 +11,22 @@
         "Tunis",
         "Sousse"
       ]
+    },
+    {
+      "id": "2",
+      "name": "Echec",
+      "price": 46.3,
+      "madeIn": "Tunisie",
+      "category": "Jeux de société",
+      "isNew": true
+    },
+    {
+      "id": 3,
+      "name": "Scrable",
+      "price": 27,
+      "madeIn": "Autre",
+      "category": "Puzzle",
+      "isNew": true
     }
   ]
 }

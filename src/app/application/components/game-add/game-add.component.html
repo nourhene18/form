@@ -1,46 +1,46 @@
 <div class="container">
     <h3>Ajout d'un jeu</h3>
-    <form>
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
         <div>
             <label> Identifiant du jeu </label>
-            <input type="number" name="id" readonly>
+            <input type="number" name="id" formControlName="id" class="form-control" readonly>
         </div>
         <div>
             <label>Nom</label>
-            <input type="text"  name="name" >
+            <input type="text"  name="name" formControlName="name" class="form-control">
         </div>
         <div>
             <label>Prix</label>
-            <input type="number" name="price" >
+            <input type="number" name="price" formControlName="price" class="form-control">
         </div>
 
         <div>
             <label> Made In </label>
             <label>
-                <input type="radio" name="madeIn" value="Tunisie" >Tunisie
+                <input type="radio" name="madeIn" value="Tunisie" formControlName="madeIn">Tunisie
             </label>
             <label>
-                <input type="radio" name="madeIn" value="Autre" >Autre
+                <input type="radio" name="madeIn" value="Autre" formControlName="madeIn">Autre
             </label>
         </div>
         <div>
             <label>Catégorie</label>
             
-            <select name="selCategories">
+            <select name="selCategories" formControlName="category" class="form-select">
                 @for(c of categories; track $index){
-                    <option name="c" [value]="c">{{c}}</option>
+                    <option name="c" [value]="c" >{{c}}</option>
                 }
             </select>
         
         </div>
         <div>
             <label>
-                <input type="checkbox" name="isNew" > Nouveau
+                <input type="checkbox" name="isNew" formControlName="isNew"> Nouveau
             </label>
         </div>
 
         <input type="submit"  value="Ajouter">
-        <input type="button" value="Effacer">
+        <input type="button" value="Effacer" (click)="onResetForm()">
 
     </form>
 </div>
