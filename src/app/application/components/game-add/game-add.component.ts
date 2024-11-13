@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Category } from '../../model/category';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../model/game';
 
@@ -35,7 +35,8 @@ export class GameAddComponent  {
       price:[0],
       madeIn:['Tunisie'],
       category:[Category.BoardGames],
-      isNew:[true]
+      isNew:[true],
+      shops:this.formBuilder.array([])
     })
     this.gameService.getGames().subscribe((games) => {
       this.games = games;
@@ -59,7 +60,14 @@ export class GameAddComponent  {
     this.gameForm.get('id')?.setValue(this.games.length+1);
     this.gameForm.get('madeIn')?.setValue('Autre');
     this.gameForm.get('category')?.setValue(Category.CardGames);
+    this.GameShops.clear();
 
 
+  }
+  public get GameShops(){
+    return this.gameForm.get('shops') as FormArray;
+  }
+  onAddShop(){
+    this.GameShops.push(this.formBuilder.control(''));
   }
 }
