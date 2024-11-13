@@ -27,6 +27,22 @@
       "madeIn": "Autre",
       "category": "Puzzle",
       "isNew": true
+    },
+    {
+      "id": 4,
+      "name": "Damme",
+      "price": 18,
+      "madeIn": "Tunisie",
+      "category": "Jeux de société",
+      "isNew": true
+    },
+    {
+      "id": 5,
+      "name": "uno",
+      "price": 9,
+      "madeIn": "Tunisie",
+      "category": "Jeux de cartes",
+      "isNew": true
     }
   ]
 }

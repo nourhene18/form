@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Category } from '../../model/category';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../model/game';
 
@@ -16,7 +16,7 @@ import { Game } from '../../model/game';
 export class GameAddComponent  {
   categories = Object.values(Category);
   games: Game[]=[];
-  gameForm:FormGroup=new FormGroup({
+  /*gameForm:FormGroup=new FormGroup({
     id:new FormControl(1, {nonNullable:true}),
     name:new FormControl("Echec", {nonNullable:true}),
     price:new FormControl(46.3, {nonNullable:true}),
@@ -24,13 +24,25 @@ export class GameAddComponent  {
     category:new FormControl(Category.BoardGames, {nonNullable:true}),
     isNew:new FormControl(true, {nonNullable:true}),
 
-  })
+  })*/
   gameService: GameService=inject(GameService);
-
+  formBuilder:FormBuilder=inject(FormBuilder);
+  gameForm!:FormGroup;
   ngOnInit(): void {
+    this.gameForm=this.formBuilder.nonNullable.group({
+      id:[1],
+      name:[''],
+      price:[0],
+      madeIn:['Tunisie'],
+      category:[Category.BoardGames],
+      isNew:[true]
+    })
     this.gameService.getGames().subscribe((games) => {
       this.games = games;
     });
+    this.gameForm.get('name')?.valueChanges.subscribe(
+      (value)=>console.log(value)
+    )
   }
   onSubmit(): void {
     let newId = this.games.length+1;
@@ -45,6 +57,9 @@ export class GameAddComponent  {
   onResetForm(): void {
     this.gameForm.reset();
     this.gameForm.get('id')?.setValue(this.games.length+1);
+    this.gameForm.get('madeIn')?.setValue('Autre');
+    this.gameForm.get('category')?.setValue(Category.CardGames);
+
 
   }
 }
